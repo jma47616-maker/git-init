@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
+#
+# RenderCV starter template (engineeringresumes theme).
+# Replace the placeholder content with the candidate's real, tailored details.
+# Each section contains exactly ONE entry type. See reference/yaml_schema.md.
+
+cv:
+  name: Full Name
+  headline: Software Engineer
+  location: City, Country
+  email: name@email.com
+  phone:                         # optional, real number e.g. +1-609-999-9995
+  website: https://example.com
+  social_networks:
+    - network: LinkedIn
+      username: your-handle
+    - network: GitHub
+      username: your-handle
+  sections:
+    summary:
+      - >-
+        One- or two-sentence professional summary tuned to the target role.
+        Lead with years of experience, core specialty, and the kind of impact
+        you deliver. Mirror the job description's key language.
+
+    experience:
+      - company: Most Recent Company
+        position: Job Title
+        location: City, Country
+        start_date: 2022-01
+        end_date: present
+        highlights:
+          - Achievement bullet starting with a strong verb and a quantified
+            result (%, $, scale, latency, users) using the job's keywords.
+          - Built/Led/Shipped X that produced measurable outcome Y.
+      - company: Previous Company
+        position: Job Title
+        location: City, Country
+        start_date: 2019-06
+        end_date: 2021-12
+        highlights:
+          - Quantified achievement relevant to the target role.
+          - Another achievement that maps to a required skill in the JD.
+
+    projects:
+      - name: '[Project Name](https://github.com/...)'
+        summary: One line on what it does and the tech used.
+        highlights:
+          - Impact or scale (stars, users, performance).
+
+    education:
+      - institution: University Name
+        area: Field of Study
+        degree: BS
+        location: City, Country
+        start_date: 2015-09
+        end_date: 2019-06
+        highlights:
+          - 'GPA: 3.8/4.0 (optional)'
+
+    skills:
+      - label: Languages
+        details: Python, JavaScript, Go
+      - label: Frameworks & Tools
+        details: React, Django, Docker, Kubernetes
+      - label: Cloud & Data
+        details: AWS, PostgreSQL, Kafka
+
+design:
+  theme: engineeringresumes
