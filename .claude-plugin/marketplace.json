@@ -1,0 +1,19 @@
+{
+  "name": "jma-plugins",
+  "description": "Personal Claude Code plugins, including a RenderCV resume builder.",
+  "owner": {
+    "name": "jma47616-maker",
+    "email": "jma47616@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "rendercv-resume",
+      "source": "./plugins/rendercv-resume",
+      "description": "Create an ATS-friendly resume tailored to a job description in the exact RenderCV format and render it to a PDF.",
+      "version": "1.0.0",
+      "author": {
+        "name": "jma47616-maker"
+      }
+    }
+  ]
+}
