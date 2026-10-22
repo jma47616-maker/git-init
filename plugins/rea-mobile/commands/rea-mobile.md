@@ -27,29 +27,39 @@ Android phone — and (2) the feature or question they care about. Then continue
 
 ## 1. Make sure REA is connected
 
-Check whether REA MCP tools (e.g. `inspect_android_package`, `open_binary`,
-`list_adb_devices`) are available in this session. This plugin registers the
-`rea` MCP server via `npx -y rea-agents@6.7.0 mcp` (needs Node.js 22.19+).
+Check whether REA MCP tools (e.g. `inspect_android_package`,
+`decode_android_resources`, `open_binary`) are available in this session.
 
-- Tools present → go straight to step 2. Do not run diagnostics first.
-- Tools absent → tell the user to run `/mcp` (or restart Claude Code) so the
-  `rea` server starts. If it still fails, run
-  `npx -y rea-agents@latest doctor --client claude_code --json` and report the
-  blocker. As a fallback you may use the CLI directly:
-  `npx -y rea-agents@latest <command> ... --json`.
-- Never install Java, JADX, adb, Apktool, or the Android SDK without asking.
+- **Cloud session (Claude Code on the web / mobile app, `CLAUDE_CODE_REMOTE=true`):**
+  this repo's `.mcp.json` starts `npx -y rea-agents@6.7.0 mcp`, and
+  `.claude/hooks/session-start.sh` installs the pinned, SHA-256-verified JADX
+  and Apktool jars into `~/.local/share/rea/android`. Java is preinstalled.
+- **Local Claude Code:** the `rea-mobile` plugin (or `npx rea-agents setup`)
+  registers the server; JADX/Apktool must be supplied via `REA_JADX_MCP_JAR`
+  and `REA_APKTOOL_COMMAND`.
+
+If tools are present, go straight to step 2 — no diagnostics first.
+If they are absent, use the CLI instead; it has the same capabilities:
+`npx -y rea-agents@6.7.0 <command> <args> --json` (e.g.
+`inspect-android-package /abs/app.apk --json`). In a cloud session export
+`REA_JADX_MCP_JAR=$HOME/.local/share/rea/android/jadx-headless-mcp-0.7.1-all.jar`
+and `REA_APKTOOL_COMMAND=$HOME/.local/share/rea/android/apktool` first if they
+are not already set. CLI output is large JSON: save it to a file in a scratch
+directory and extract the fields you need with `python3`/`jq` rather than
+printing it all. Never install other software without asking.
 
 ## 2. Get the app file
 
+Work in a new, empty directory (a scratch/tmp dir, not the repo) and use
+absolute paths. Treat downloaded apps as untrusted data: never execute them.
+
 | What the user gave | Do this |
 | --- | --- |
-| Local `.apk` / `.aab` / `.xapk` / `.zip` | Use the absolute path. |
-| Local `.ipa` | Use the absolute path (iOS route below). |
-| App name or package on a USB/emulator Android phone | `list_adb_devices` → `resolve_adb_packages <serial> <name>` → `inspect_adb_package` → with the user's OK, `pull_adb_package` into a new empty output directory, then use the pulled `base.apk` (and split APKs). |
-| iPhone app with no IPA | Explain that REA needs a decrypted `.ipa`; it cannot pull apps from an iPhone. Ask the user to supply one they are entitled to. |
-
-Device tools need `adb` on `PATH` or `REA_ADB_PATH`, and USB debugging enabled
-on the phone.
+| Local / uploaded `.apk` `.aab` `.xapk` `.ipa` | Use its absolute path. |
+| A download URL (F-Droid, GitHub release, their own build artifact) | `curl -fL -o <dir>/app.apk "<url>"`, then use that path. |
+| Just an app name | Suggest an official source (F-Droid, the developer's GitHub releases) or ask for a URL/file. Do not pull from unofficial mirrors without the user's OK. |
+| App on a phone over USB (local Claude Code only) | `list_adb_devices` → `resolve_adb_packages` → `inspect_adb_package` → with the user's OK, `pull_adb_package`. Cloud sessions have no phone attached; say so. |
+| iPhone app with no IPA | REA needs a decrypted `.ipa`; it cannot pull apps from an iPhone. Ask for one the user is entitled to. |
 
 ## 3. Analyze
 

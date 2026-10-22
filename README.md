@@ -45,6 +45,26 @@ RenderCV YAML file, and runs `rendercv render` to produce a PDF in
 `rendercv_output/`. Requires **Python 3.10+** (the plugin installs RenderCV with
 `pip install "rendercv[full]"`).
 
+## Use `/rea-mobile` in Claude Code on mobile / web
+
+This repo is also set up so cloud sessions (the Claude app on your phone, or
+claude.ai/code) get the whole REA toolchain automatically — no plugin install:
+
+- `.claude/commands/rea-mobile.md` — the `/rea-mobile` slash command
+- `.claude/skills/reverse-engineer-anything/` — REA's own skill (vendored, MIT)
+- `.mcp.json` — starts the REA MCP server (`npx -y rea-agents@6.7.0 mcp`)
+- `.claude/hooks/session-start.sh` — on session start, downloads and SHA-256
+  verifies the JADX (decompiler) and Apktool (resources) jars REA needs
+- `.claude/settings.json` — enables the hook and the project MCP server
+
+On your phone: open the Claude app → Code → start a session on
+`jma47616-maker/git-init`, then type e.g.
+`/rea-mobile https://f-droid.org/repo/<app>.apk how does sync work?`
+
+Cloud sessions use the repository's default branch, so merge these files into
+it first. Cloud sessions have no phone attached, so give the command an
+APK/IPA URL or upload; pulling apps over adb works only in local Claude Code.
+
 ## Repository layout
 
 ```
