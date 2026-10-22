@@ -1,11 +1,15 @@
 # jma-plugins — Claude Code Plugin Marketplace
 
 A [Claude Code](https://claude.com/claude-code) plugin marketplace. It currently
-hosts one plugin:
+hosts two plugins:
 
 - **rendercv-resume** — create an ATS-friendly resume tailored to a job
   description in the exact [RenderCV](https://github.com/rendercv/rendercv)
   format and render it to a polished PDF.
+- **rea-mobile** — the `/rea-mobile` command: reverse engineer an Android (APK)
+  or iOS (IPA) phone app with [REA](https://github.com/morluto/rea) and get a
+  short, evidence-backed explanation of how a feature works. See
+  [its README](plugins/rea-mobile/README.md).
 
 ## Install (for your friend)
 
@@ -14,6 +18,7 @@ In Claude Code, add this marketplace, then install the plugin:
 ```
 /plugin marketplace add jma47616-maker/git-init
 /plugin install rendercv-resume@jma-plugins
+/plugin install rea-mobile@jma-plugins
 ```
 
 > The `owner/repo` shorthand pulls from the repository's **default branch**. The
@@ -47,6 +52,7 @@ RenderCV YAML file, and runs `rendercv render` to produce a PDF in
 ├── .claude-plugin/
 │   └── marketplace.json              # this marketplace's catalog
 └── plugins/
+    ├── rea-mobile/                   # /rea-mobile command + REA MCP server
     └── rendercv-resume/              # the plugin
         ├── .claude-plugin/plugin.json
         ├── skills/rendercv-resume/   # the skill (SKILL.md + reference + template)
