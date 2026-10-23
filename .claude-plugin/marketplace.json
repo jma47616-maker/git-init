@@ -18,7 +18,7 @@
     {
       "name": "rea-mobile",
       "source": "./plugins/rea-mobile",
-      "description": "/rea-mobile: reverse engineer Android (APK) and iOS (IPA) phone apps with REA and explain how a feature works, with evidence.",
+      "description": "/rea: reverse engineer Android (APK) and iOS (IPA) phone apps with REA and explain how a feature works, with evidence.",
       "version": "1.0.0",
       "author": {
         "name": "jma47616-maker"

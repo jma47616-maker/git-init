@@ -1,6 +1,6 @@
 #!/bin/bash
 # Installs REA (Reverse Engineer Anything) and its Android engines for
-# Claude Code cloud sessions (web / mobile app), so /rea-mobile works.
+# Claude Code cloud sessions (web / mobile app), so /rea works.
 set -euo pipefail
 
 if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then

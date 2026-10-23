@@ -6,10 +6,10 @@ hosts two plugins:
 - **rendercv-resume** — create an ATS-friendly resume tailored to a job
   description in the exact [RenderCV](https://github.com/rendercv/rendercv)
   format and render it to a polished PDF.
-- **rea-mobile** — the `/rea-mobile` command: reverse engineer an Android (APK)
+- **rea-mobile** — the `/rea` command: reverse engineer an Android (APK)
   or iOS (IPA) phone app with [REA](https://github.com/morluto/rea) and get a
   short, evidence-backed explanation of how a feature works. See
-  [its README](plugins/rea-mobile/README.md).
+  [its README](plugins/rea/README.md).
 
 ## Install (for your friend)
 
@@ -45,12 +45,12 @@ RenderCV YAML file, and runs `rendercv render` to produce a PDF in
 `rendercv_output/`. Requires **Python 3.10+** (the plugin installs RenderCV with
 `pip install "rendercv[full]"`).
 
-## Use `/rea-mobile` in Claude Code on mobile / web
+## Use `/rea` in Claude Code on mobile / web
 
 This repo is also set up so cloud sessions (the Claude app on your phone, or
 claude.ai/code) get the whole REA toolchain automatically — no plugin install:
 
-- `.claude/commands/rea-mobile.md` — the `/rea-mobile` slash command
+- `.claude/commands/rea.md` — the `/rea` slash command
 - `.claude/skills/reverse-engineer-anything/` — REA's own skill (vendored, MIT)
 - `.mcp.json` — starts the REA MCP server (`npx -y rea-agents@6.7.0 mcp`)
 - `.claude/hooks/session-start.sh` — on session start, downloads and SHA-256
@@ -59,7 +59,7 @@ claude.ai/code) get the whole REA toolchain automatically — no plugin install:
 
 On your phone: open the Claude app → Code → start a session on
 `jma47616-maker/git-init`, then type e.g.
-`/rea-mobile https://f-droid.org/repo/<app>.apk how does sync work?`
+`/rea https://f-droid.org/repo/<app>.apk how does sync work?`
 
 Cloud sessions use the repository's default branch, so merge these files into
 it first. Cloud sessions have no phone attached, so give the command an
@@ -72,7 +72,7 @@ APK/IPA URL or upload; pulling apps over adb works only in local Claude Code.
 ├── .claude-plugin/
 │   └── marketplace.json              # this marketplace's catalog
 └── plugins/
-    ├── rea-mobile/                   # /rea-mobile command + REA MCP server
+    ├── rea-mobile/                   # /rea command + REA MCP server
     └── rendercv-resume/              # the plugin
         ├── .claude-plugin/plugin.json
         ├── skills/rendercv-resume/   # the skill (SKILL.md + reference + template)

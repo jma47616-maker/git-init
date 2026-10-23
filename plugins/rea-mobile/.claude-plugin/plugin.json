@@ -2,7 +2,7 @@
   "name": "rea-mobile",
   "displayName": "REA Mobile App Reverse Engineering",
   "version": "1.0.0",
-  "description": "/rea-mobile slash command: reverse engineer Android (APK/AAB/XAPK) and iOS (IPA) phone apps with REA (Reverse Engineer Anything) and explain how a feature works, with evidence.",
+  "description": "/rea slash command: reverse engineer Android (APK/AAB/XAPK) and iOS (IPA) phone apps with REA (Reverse Engineer Anything) and explain how a feature works, with evidence.",
   "author": {
     "name": "jma47616-maker",
     "email": "jma47616@gmail.com"

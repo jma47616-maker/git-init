@@ -1,6 +1,6 @@
 # rea-mobile
 
-A Claude Code plugin that adds the **`/rea-mobile`** slash command: reverse
+A Claude Code plugin that adds the **`/rea`** slash command: reverse
 engineer an Android or iOS **phone app** with
 [REA — Reverse Engineer Anything](https://github.com/morluto/rea) and get a
 short, evidence-backed explanation of how a feature works.
@@ -21,9 +21,9 @@ Or, on older Claude Code:
 ## Usage
 
 ```
-/rea-mobile /path/to/app.apk how does the offline sync work?
-/rea-mobile com.example.notes  how is search implemented?   # app on a connected Android phone
-/rea-mobile /path/to/App.ipa   what frameworks does it use?
+/rea /path/to/app.apk how does the offline sync work?
+/rea com.example.notes  how is search implemented?   # app on a connected Android phone
+/rea /path/to/App.ipa   what frameworks does it use?
 ```
 
 Claude routes the app to the right REA tools (APK signature, JADX
@@ -33,7 +33,7 @@ format: answer, evidence, app facts, unknowns, next step.
 
 ## What gets installed
 
-- `commands/rea-mobile.md` — the slash command.
+- `commands/rea.md` — the slash command.
 - `.mcp.json` — registers REA's MCP server (`npx -y rea-agents@6.7.0 mcp`).
   Restart Claude Code (or run `/mcp`) after installing the plugin.
 
